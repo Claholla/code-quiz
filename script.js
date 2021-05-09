@@ -16,6 +16,8 @@ function timer() {
             alert("Game over man!");
         }
     }, 1000);
+    let startBtn = document.getElementById("start-btn");
+    startBtn.remove();
     generateQuiz(qSelector);
 }
 
@@ -28,17 +30,16 @@ function decrement() {
 // Generates the quiz items
 function generateQuiz(qSelector) {
     // DOM selector variables
-    let startBtn = document.getElementById("start-btn");
+    
     let qPrimary = document.querySelector(".quiz-primary");
     let qSecondary = document.querySelector(".quiz-secondary");
     // Removes instructions and quiz title, creates a space for answer choices
-    startBtn.remove();
+
     qPrimary.textContent = "";
     qSecondary.textContent = "";
     let spawnList = document.createElement("ul");
-    // A loop accessing the questionArray variable and populating question and answer fields
-    for (let i = 0; i < questionArray.length; i++) {
-        qPrimary.textContent = questionArray[i].question;
+    // A block accessing the questionArray variable and populating question and answer fields
+        qPrimary.textContent = questionArray[qSelector].question;
         let choices = questionArray[qSelector].answers;
         // Generates buttons for possible answer options from questionArray
         choices.forEach(function (el) {
@@ -48,7 +49,7 @@ function generateQuiz(qSelector) {
             spawnList.append(aList);
             aList.addEventListener("click", (checkAnswer));
         });
-    };
+
 };
 
 // Array of questions and answers for quiz content
